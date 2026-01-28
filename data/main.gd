@@ -9,6 +9,7 @@ const DOUBLE_TAP_THRESHOLD: float = 0.3  # secs
 @onready var stop_button: Button = %StopButton
 @onready var skip_button: Button = %SkipButton
 @onready var reset_button: Button = %ResetButton
+@onready var settings_button: AnimButton = %SettingsButton
 
 @onready var counter_label: Label = %CounterLabel
 
@@ -54,8 +55,6 @@ func _update_aod_mode() -> void:
 		%StatusLabel.visible = false
 		%ProgressBar.visible = false
 		%CounterLabel.visible = false
-		get_node("Panel/VBoxContainer/HBoxContainer").visible = false
-		get_node("Panel/VBoxContainer/BottomButtonContainer").visible = false
 		
 		_start_aod_animation()
 	else:
@@ -66,8 +65,6 @@ func _update_aod_mode() -> void:
 		%TimeLabel.visible = true
 		%StatusLabel.visible = true
 		%ProgressBar.visible = true
-		get_node("Panel/VBoxContainer/HBoxContainer").visible = true
-		get_node("Panel/VBoxContainer/BottomButtonContainer").visible = true
 		_update_counter_visibility()
 		
 		_stop_aod_animation()
@@ -125,28 +122,28 @@ func _gui_input(event: InputEvent) -> void:
 		if event.double_tap:
 			Settings.set_setting("aod_mode_enabled", false)
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if not event is InputEventKey or not event.is_pressed():
-		return
-
-	match event.keycode:
-		KEY_SPACE:
-			_on_start_pause_button_pressed()
-			get_viewport().set_input_as_handled()
-		KEY_S:
-			if not stop_button.disabled:
-				_on_stop_button_pressed()
-				get_viewport().set_input_as_handled()
-		KEY_N:
-			if not skip_button.disabled:
-				_on_skip_button_pressed()
-				get_viewport().set_input_as_handled()
-		KEY_R:
-			if not reset_button.disabled:
-				_on_reset_button_pressed()
-				get_viewport().set_input_as_handled()
-		KEY_A:
-			Settings.set_setting("aod_mode_enabled", !Settings.get_setting("aod_mode_enabled"))
+#func _unhandled_key_input(event: InputEvent) -> void:
+	#if not event is InputEventKey or not event.is_pressed():
+		#return
+#
+	#match event.keycode:
+		#KEY_SPACE:
+			#_on_start_pause_button_pressed()
+			#get_viewport().set_input_as_handled()
+		#KEY_S:
+			#if not stop_button.disabled:
+				#_on_stop_button_pressed()
+				#get_viewport().set_input_as_handled()
+		#KEY_N:
+			#if not skip_button.disabled:
+				#_on_skip_button_pressed()
+				#get_viewport().set_input_as_handled()
+		#KEY_R:
+			#if not reset_button.disabled:
+				#_on_reset_button_pressed()
+				#get_viewport().set_input_as_handled()
+		#KEY_A:
+			#Settings.set_setting("aod_mode_enabled", !Settings.get_setting("aod_mode_enabled"))
 
 
 func _on_timer_updated(time_left: int, total_time: int) -> void:
@@ -173,7 +170,7 @@ func _on_timer_started(timer_type: TimerManager.TimerType) -> void:
 			status_label.text = "Long Break"
 			progress_bar.self_modulate = break_color
 
-	start_pause_button.text = "Pause"
+	start_pause_button.text = "⏸"
 	stop_button.disabled = false
 	skip_button.disabled = false
 	reset_button.disabled = true
@@ -182,10 +179,10 @@ func _on_timer_finished(_timer_type: TimerManager.TimerType) -> void:
 	_set_timer_inactive_state()
 
 func _on_timer_paused() -> void:
-	start_pause_button.text = "Resume"
+	start_pause_button.text = "▶"
 
 func _on_timer_resumed() -> void:
-	start_pause_button.text = "Pause"
+	start_pause_button.text = "⏸️"
 
 func _on_timer_stopped() -> void:
 	_set_timer_inactive_state()
@@ -221,7 +218,7 @@ func _update_counter_visibility() -> void:
 		counter_label.visible = false
 
 func _set_timer_inactive_state() -> void:
-	start_pause_button.text = "Start"
+	start_pause_button.text = "▶"
 	status_label.text = "Ready"
 	stop_button.disabled = true
 	skip_button.disabled = true
@@ -273,3 +270,17 @@ func _notification(what: int) -> void:
 
 		NOTIFICATION_WM_GO_BACK_REQUEST:
 			pass
+
+func show_buttons():
+	for i in [start_pause_button,
+stop_button,
+skip_button,
+reset_button,settings_button]:
+		i.show()
+		
+func hide_buttons():
+	for i in [start_pause_button,
+stop_button,
+skip_button,
+reset_button,settings_button]:
+		i.hide()

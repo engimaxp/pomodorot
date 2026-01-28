@@ -1,5 +1,14 @@
 # Pomodorot - Godot Pomodoro Timer
 
+## modified
+
+Mixed with [Dororo](https://github.com/MelanTech/Dororo)
+so it can be dragged and has a transparent background. modification is done in 3 hours, so there're not much tests.
+
+some ui improvement to make it smaller
+
+btw, i used it on windows only
+
 [![F-Droid Version](https://img.shields.io/f-droid/v/app.pomodorot)](https://f-droid.org/packages/app.pomodorot/)
 [![GitHub Release](https://img.shields.io/github/v/release/mlm-games/pomodorot)](https://github.com/mlm-games/pomodorot/releases/latest)
 [![License](https://img.shields.io/github/license/mlm-games/pomodorot)](LICENSE.md)

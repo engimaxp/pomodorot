@@ -130,8 +130,8 @@ func _on_timer_timeout() -> void:
 			if prev_window_mode == DisplayServer.WINDOW_MODE_MINIMIZED:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
-			DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			DisplayServer.window_set_flag.call_deferred(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, true)
+			#DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			#DisplayServer.window_set_flag.call_deferred(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, true)
 
 			var root_win := get_tree().root
 			if root_win and not root_win.has_focus():

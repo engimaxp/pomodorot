@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://r13yvctdsbc8"]
+
+[ext_resource type="Script" uid="uid://dk5i6dgqivra1" path="res://data/new_main.gd" id="1_0jpti"]
+[ext_resource type="PackedScene" uid="uid://xwgfdfp0i4u0" path="res://data/main.tscn" id="2_yx8tw"]
+
+[node name="NewMain" type="Node2D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_0jpti")
+model = NodePath("CanvasLayer/Main")
+dock_pop_expression_reset_time = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Main" parent="CanvasLayer" instance=ExtResource("2_yx8tw")]
+unique_name_in_owner = true
+
+[editable path="CanvasLayer/Main"]

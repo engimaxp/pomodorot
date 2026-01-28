@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="pomodorot"
-run/main_scene="res://data/main.tscn"
+run/main_scene="uid://r13yvctdsbc8"
 config/quit_on_go_back=false
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
 boot_splash/show_image=false
@@ -26,16 +26,37 @@ Settings="*res://autoloads/settings.gd"
 TimerManager="*res://autoloads/timer_manager.gd"
 SoundManager="*res://data/sound_manager.gd"
 TrayManager="*res://autoloads/tray_manager.gd"
+MouseTracker="*res://scripts/cs/MouseTracker.cs"
+WindowManager="*res://scripts/cs/WindowManager.cs"
+MouseDetection="*res://scripts/cs/MouseDetection.cs"
+AutoStarter="*res://scripts/cs/AutoStarter.cs"
+FileApi="*res://scripts/cs/FileAPI.cs"
 
 [debug]
 
-gdscript/warnings/untyped_declaration=1
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_local_constant=0
+gdscript/warnings/unused_private_class_variable=0
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=800
+window/size/viewport_width=312
+window/size/viewport_height=128
+window/size/borderless=true
+window/size/transparent=true
+window/energy_saving/keep_screen_on=false
+window/subwindows/embed_subwindows=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 window/handheld/orientation=5
+window/vsync/vsync_mode=0
+
+[dotnet]
+
+project/assembly_name="pomodorot"
 
 [editor_plugins]
 
@@ -43,5 +64,7 @@ enabled=PackedStringArray()
 
 [rendering]
 
+rendering_device/driver.windows="d3d12"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.121569, 0.14902, 0.266667, 1)
+viewport/transparent_background=true
